@@ -1,45 +1,13 @@
-import {useState} from "react";
 
-const DisplayTweets = () => {
-    const [tweets, setTweet] = useState([
-        {
-            id: 1,
-            name: "Kelvin Mukotso",
-            username: "kevo",
-            tweet: "In project management, critical path analysis outlines all the steps necessary to complete a task," +
-                " along with their durations and relationships. The technique was developed in ."
-        },
-        {
-            id: 2,
-            name: "Diana Mseto",
-            username: "Dayo",
-            tweet: "Microsoft Project is one of the top solutions teams use in software development and other areas to manage projects, track progress, ."
-        },
-        {
-            id: 3,
-            name: "Diblo wakaberia",
-            username: "Diblo",
-            tweet: "DI - or dependency injection - is a technique that uses some of the best programming practices to leverage decoupling amongst code. Pieces of..."
-        },
-        {
-            id: 4,
-            name: "Zingri",
-            username: "Zingri",
-            tweet: "Operators are used in programming languages to perform operations on data and variables. The Java programming language include many types of operators, including "
-        },
-        {
-            id: 5,
-            name: "Clinto Ombasi",
-            username: "Clinto",
-            tweet: "3icrosoft last month delivered the new .NET 6 Preview. This comes just a few months after the release of .NET 5.0 in November"
-        }
-    ])
+const DisplayTweets = (props) => {
+    const today = new Date().toLocaleString();
+
+
     return (
         <>
-            <hr/>
 
             {
-                tweets.map((tweet) => {
+                props.tweets.map((tweet, index) => {
                     return (
                         <>
                             <div className={'header'}>
@@ -50,9 +18,21 @@ const DisplayTweets = () => {
                             </div>
 
                             <div className={'footer'}>
-                                <button>EDIT</button>
-                                <button>DELETE</button>
+                               <div>
+                                   <span><i className={'fa fa-edit'}></i></span>
+                                   <span onClick={ () => props.handleDelete(index)}><i className={'fa fa-trash'}></i></span>
+                               </div>
+
+                                <div>
+                                    <span><i className={'fa fa-comment'}></i></span>
+                                    <span><i className={'fa fa-heart'}></i></span>
+                                    <span><i className={'fa  fa-refresh'}></i></span>
+                                </div>
+                                <div>
+                                    <span>{today}</span>
+                                </div>
                             </div>
+                            <hr/>
                         </>
                     )
                 })
