@@ -65,3 +65,23 @@ textarea:focus,textarea:hover {
   border-radius: 3px;
   border: 1px solid #e6ecf0;
 }
+
+.footer{
+  display:flex;
+  justify-content: space-between;
+  padding:3%;
+}
+
+.fa{
+margin-left:10px;
+  font-size:20px;
+}
+.fa-edit, .fa-trash{
+  color:darkcyan;
+}
+.fa-heart{
+  color:red;
+}
+.fa-comment , .fa-refresh{
+  color:green;
+}
