@@ -9,7 +9,7 @@ const DisplayTweets = (props) => {
             {
                 props.tweets.map((tweet, index) => {
                     return (
-                        <>
+                        <div key={index}>
                             <div className={'header'}>
                                 <h5> {tweet.name} <span>@{tweet.username}</span></h5>
                             </div>
@@ -33,7 +33,7 @@ const DisplayTweets = (props) => {
                                 </div>
                             </div>
                             <hr/>
-                        </>
+                        </div>
                     )
                 })
             }
