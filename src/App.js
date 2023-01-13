@@ -1,7 +1,8 @@
 import './App.css';
-import AddPost from "./Components/AddPost";
 import {useState} from "react"
 import DisplayTweets from "./Components/DisplayTweets";
+import EditTweet from "./Components/EditTweet";
+import AddTweet from "./Components/AddTweet";
 
 function App() {
     const defaultTweets=[
@@ -39,7 +40,8 @@ function App() {
     ];
 
     const [tweets, setTweets] = useState(defaultTweets)
-
+    const [editTweet,setEditTweet] = useState(false);
+    const [selectedTweet, setselectedTweet ] = useState('')
 
     const handleDelete = (deleteIndex)=>{
         alert('confirm to delete the post');
@@ -54,13 +56,27 @@ function App() {
     }
 
 
+    const showEditTweet = (edit_post_index)=>{
+
+         let tweet =   tweets.filter((tweet, index) => index === edit_post_index)
+        setEditTweet(true);
+        setselectedTweet(tweet[0])
+    }
+
+    const cancelEditTweet = ()=>{
+        setEditTweet(false);
+    }
+
 
     return (
         <div className="tweet-wrapper">
             <h3>Twitter Posts</h3>
             <div className={'content-wrapper'}>
-                <AddPost updateTweet={updateTweets} tweets={tweets}/>
-                <DisplayTweets  tweets={tweets} handleDelete={handleDelete} />
+                {editTweet
+                    ? <EditTweet tweet={selectedTweet} cancelEditTweet={cancelEditTweet} />
+                    :  <AddTweet updateTweet={updateTweets} tweets={tweets}/> }
+
+                <DisplayTweets  tweets={tweets} handleDelete={handleDelete} showEditTweet={showEditTweet} />
             </div>
 
         </div>
