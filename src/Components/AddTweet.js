@@ -1,6 +1,6 @@
 import {useRef, useState} from "react";
 
-const AddPost = (props) => {
+const AddTweet = (props) => {
 
     const maximumTweetLength = 250;
     const [remainingTweetCharacters , setRemainingTweetCharacters] = useState(maximumTweetLength)
@@ -48,7 +48,7 @@ const AddPost = (props) => {
       <>
         <div className={'addPost'}>
             <textarea ref={tweetInput} onChange={handleTweetChange} className={'text-area'} name={'post'}  value={tweet} placeholder='Type your tweet ....' />
-            <button onClick={handleSavePost} className={'add-post-button'}>Add Post</button>
+            <button onClick={handleSavePost} className={'add-post-button'}>Add Tweet</button>
         </div>
           <div className={'wordCount'}>
               <span>{remainingTweetCharacters}</span>
@@ -61,4 +61,4 @@ const AddPost = (props) => {
 
 }
 
-export default AddPost;
+export default AddTweet;
