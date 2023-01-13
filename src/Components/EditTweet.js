@@ -24,7 +24,7 @@ const AddPost = (props) => {
     //     setTweet('');
     // }
 
-    const handleSavePost = ()=>{
+    const handleSavePost = (props)=>{
 
         let newTweet =
             {
@@ -46,12 +46,13 @@ const AddPost = (props) => {
 
   return(
       <>
+          <button onClick={props.cancelEditTweet} className={'new-tweet-button'} >NEW TWEET</button>git
         <div className={'addPost'}>
-            <textarea ref={tweetInput} onChange={handleTweetChange} className={'text-area'} name={'post'}  value={tweet} placeholder='Type your tweet ....' />
+            <textarea ref={tweetInput} onChange={handleTweetChange} className={'text-area'} name={'post'}  value={props.tweet.tweet} placeholder='Type your tweet ....' />
 
         </div>
           <button onClick={handleSavePost} className={'add-post-button'}>SAVE</button>
-          <button onClick={handleSavePost} className={'add-post-button'}>CANCEL</button>
+          <button onClick={props.cancelEditTweet} className={'add-post-button'} >CANCEL</button>
           <div className={'wordCount'}>
               <span>{remainingTweetCharacters}</span>
           </div>
