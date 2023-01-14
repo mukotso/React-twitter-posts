@@ -1,4 +1,3 @@
-import EditPost from "./EditPost";
 const DisplayTweets = (props) => {
     const today = new Date().toLocaleString();
 
@@ -10,7 +9,6 @@ const DisplayTweets = (props) => {
                 props.tweets.map((tweet, index) => {
                     return (
                         <div key={index}>
-                            <EditPost/>
                             <div className={'header'}>
                                 <h5> {tweet.name} <span>@{tweet.username}</span></h5>
                             </div>
@@ -20,7 +18,7 @@ const DisplayTweets = (props) => {
 
                             <div className={'footer'}>
                                <div>
-                                   <span><i className={'fa fa-edit'}></i></span>
+                                   <span><i className={'fa fa-edit'} onClick={ () => props.showEditTweet(index)}></i></span>
                                    <span onClick={ () => props.handleDelete(index)}><i className={'fa fa-trash'}></i></span>
                                </div>
 
