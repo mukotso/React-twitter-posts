@@ -42,13 +42,29 @@ function App() {
     const [tweets, setTweets] = useState(defaultTweets)
     const [editTweet,setEditTweet] = useState(false);
     const [selectedTweet, setselectedTweet ] = useState('')
+    const [tweetIndex, setEditPostIndex] = useState('')
 
     const handleDelete = (deleteIndex)=>{
         alert('confirm to delete the post');
         setTweets((tweets) =>
             tweets.filter((tweet, index) => index !== deleteIndex)
         );
-        alert('Tweet deleted successfully');
+
+    }
+
+    const handleEditPost = (tweetDetails)=>{
+
+        handleDelete(tweetIndex);
+
+        let updated_tweet = {...selectedTweet};
+        updated_tweet.tweet= tweetDetails
+        console.log('updated_tweet',tweetDetails);
+        tweets.push(updated_tweet);
+        //update tweet
+        setTweets(tweets);
+        setEditTweet(false);
+        alert('Tweet edited successfully');
+
     }
 
    const  updateTweets =(updatedTweets)=>{
@@ -57,7 +73,7 @@ function App() {
 
 
     const showEditTweet = (edit_post_index)=>{
-
+        setEditPostIndex(edit_post_index)
          let tweet =   tweets.filter((tweet, index) => index === edit_post_index)
         setEditTweet(true);
         setselectedTweet(tweet[0])
@@ -73,7 +89,7 @@ function App() {
             <h3>Twitter Posts</h3>
             <div className={'content-wrapper'}>
                 {editTweet
-                    ? <EditTweet tweet={selectedTweet} cancelEditTweet={cancelEditTweet} />
+                    ? <EditTweet tweet={selectedTweet} cancelEditTweet={cancelEditTweet} handleEditPost={handleEditPost} />
                     :  <AddTweet updateTweet={updateTweets} tweets={tweets}/> }
 
                 <DisplayTweets  tweets={tweets} handleDelete={handleDelete} showEditTweet={showEditTweet} />
